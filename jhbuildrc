@@ -25,6 +25,13 @@ os.environ['FOP'] = '/opt/local/bin/fop'
 os.environ['FOP_OPTS'] = '-Xmx2048m -Djava.awt.headless=true'
 os.environ['PS2PDF'] = '/opt/local/bin/ps2pdf'
 
+os.environ['FREETYPE_CFLAGS'] = '-I/opt/X11/include/freetype2 -I' + os.path.join(prefix, 'include') + ' -I/opt/X11/include'
+
+os.environ['CC'] = '/opt/llvm/bin/clang'
+os.environ['CXX'] = '/opt/llvm/bin/clang++'
+os.environ['CFLAGS'] = '-O0 -ggdb3 -Wall -arch i386 -arch x86_64'
+os.environ['CPPFLAGS'] = '-I/opt/X11/include/freetype2 -I' + os.path.join(prefix, 'include') + ' -I/opt/X11/include'
+
 autogenargs='--without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --cache-file=' + os.path.join(os.environ['JHBUILDDIR'] , 'configure-cache') + ' --without-dtrace --disable-static --disable-dependency-tracking --with-launchagents-dir=' + os.path.join(prefix, 'Library', 'LaunchAgents') + ' --with-launchdaemons-dir=' + os.path.join(prefix, 'Library', 'LaunchDaemons') + ' --with-apple-applications-dir=' + os.path.join(prefix, 'Applications')
 
-os.environ['CFLAGS'] = '-O0 -ggdb3 -Wall -arch i386 -arch x86_64 -arch ppc'
+
