@@ -12,6 +12,10 @@ export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild"
 JHBUILDRC="jhbuildrc.linux"
 JHBUILD="jhbuild"
 
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:${PATH}"
+[[ -d /opt/local/bin ]] && PATH="/opt/local/bin:${PATH}"
+[[ -d /opt/llvm/bin ]] && PATH="/opt/llvm/bin:${PATH}"
+
 case $CONFIG in
   yuffie)
     . /etc/profile
@@ -21,7 +25,6 @@ case $CONFIG in
     . ${HOME}/src/strip.sh
 
     unset CFLAGS OBJCFLAGS CPPFLAGS LDFLAGS C_INCLUDE_PATH OBJC_INCLUDE_PATH CPLUS_INCLUDE_PATH PKG_CONFIG_PATH
-    PATH="/opt/local/bin:${PATH}"
 
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
 
