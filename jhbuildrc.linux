@@ -1,0 +1,13 @@
+# Outside requirements: freeype, libpng
+
+#moduleset = 'http://cgit.freedesktop.org/xorg/util/modular/blob/xorg.modules'
+moduleset = os.path.join(os.environ['JHBUILDDIR'], 'xorg.modules')
+
+modules = [ 'xorg-jeremyhu-tinderbox' ]
+
+# skip = [ 'xorg-drivers', 'xdriinfo', 'libdrm', 'libpciaccess', 'libGL', 'fontconfig', 'xkeyboard-config' ]
+
+checkoutroot = os.path.join(os.environ['JHBUILDDIR'] , 'src');
+prefix = os.path.join(os.environ['JHBUILDDIR'], 'build');
+
+autogenargs='--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking'

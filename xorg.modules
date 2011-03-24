@@ -73,14 +73,25 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="xquartz">
+  <metamodule id="xserver-stable">
     <dependencies>
-      <dep package="libAppleWM"/>
-      <dep package="xorg"/>
       <dep package="xserver-1.9"/>
       <dep package="xserver-1.10"/>
     </dependencies>
   </metamodule>
 
-</moduleset>
+  <metamodule id="xorg-jeremyhu-tinderbox">
+    <dependencies>
+      <dep package="xorg"/>
+      <dep package="xserver-stable"/>
+    </dependencies>
+  </metamodule>
 
+  <metamodule id="xquartz">
+    <dependencies>
+      <dep package="libAppleWM"/>
+      <dep package="xorg-jeremyhu-tinderbox"/>
+    </dependencies>
+  </metamodule>
+
+</moduleset>
