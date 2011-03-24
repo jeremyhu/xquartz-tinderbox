@@ -10,6 +10,7 @@ fi
 
 export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild"
 JHBUILDRC="jhbuildrc.linux"
+JHBUILD="jhbuild"
 
 case $CONFIG in
   yuffie)
@@ -34,6 +35,7 @@ case $CONFIG in
     URL="http://jeremyhu-vincent:xQUGcg@tinderbox.x.org/builds/rpc"
     ;;
   tifa|tifa-linux32)
+    JHBUILD="linux32 ${JHBUILD}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
     ;;
   tifa-linux64)
@@ -53,7 +55,7 @@ export FOP_OPTS="-Xmx2048m -Djava.awt.headless=true"
 export CPPFLAGS="-I${JHBUILDDIR}/build/include -I${JHBUILDDIR}/external/build/include"
 export CFLAGS="-O0 -pipe -Wall -Wformat=2"
 
-JHBUILD="jhbuild -f ${JHBUILDDIR}/${JHBUILDRC}"
+JHBUILD="${JHBUILD} -f ${JHBUILDDIR}/${JHBUILDRC}"
 
 #$JHBUILD clean
 #$JHBUILD build --autogen --clean
