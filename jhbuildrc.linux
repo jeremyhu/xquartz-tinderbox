@@ -1,4 +1,4 @@
-# Outside requirements: freeype, libpng
+# Outside requirements: gperf byacc libxml2-dev libexpat-dev libpng-dev libfreetype6-dev
 
 #moduleset = 'http://cgit.freedesktop.org/xorg/util/modular/blob/xorg.modules'
 moduleset = os.path.join(os.environ['JHBUILDDIR'], 'xorg.modules')
@@ -12,4 +12,5 @@ build_policy = 'all'
 checkoutroot = os.path.join(os.environ['JHBUILDDIR'] , 'src')
 prefix = os.path.join(os.environ['JHBUILDDIR'], 'build')
 
-autogenargs='--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking'
+autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking'
+makeargs = '-j4'

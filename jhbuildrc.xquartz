@@ -12,4 +12,6 @@ build_policy = 'all'
 checkoutroot = os.path.join(os.environ['JHBUILDDIR'] , 'src')
 prefix = os.path.join(os.environ['JHBUILDDIR'], 'build')
 
-autogenargs='--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --with-dtrace --disable-static --disable-dependency-tracking --with-launchagents-dir=' + os.path.join(prefix, 'Library', 'LaunchAgents') + ' --with-launchdaemons-dir=' + os.path.join(prefix, 'Library', 'LaunchDaemons') + ' --with-apple-applications-dir=' + os.path.join(prefix, 'Applications')
+autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --with-dtrace --disable-static --disable-dependency-tracking --with-launchagents-dir=' + os.path.join(prefix, 'Library', 'LaunchAgents') + ' --with-launchdaemons-dir=' + os.path.join(prefix, 'Library', 'LaunchDaemons') + ' --with-apple-applications-dir=' + os.path.join(prefix, 'Applications')
+makeargs = '-j1'
+

@@ -15,6 +15,7 @@ JHBUILD="jhbuild"
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:${PATH}"
 [[ -d /opt/local/bin ]] && PATH="/opt/local/bin:${PATH}"
 [[ -d /opt/llvm/bin ]] && PATH="/opt/llvm/bin:${PATH}"
+[[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
 
 case $CONFIG in
   yuffie)
