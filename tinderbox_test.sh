@@ -1,4 +1,6 @@
 #!/bin/bash
+# http://www.x.org/wiki/Tinderbox
+# Visit http://tinderbox.x.org/account/ to add more machines.
 
 if [[ $# -eq 0 ]] ; then
   CONFIG="$(hostname -s)"
