@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [[ $# -eq 0 ]] ; then
-  CONFIG="$(hostname)"
+  CONFIG="$(hostname -s)"
 else
   CONFIG=$1
 fi
