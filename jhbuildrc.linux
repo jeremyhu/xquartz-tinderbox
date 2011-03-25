@@ -4,11 +4,8 @@ moduleset = os.path.join(os.environ['JHBUILDDIR'], 'xorg.modules')
 
 modules = [ 'xorg-jeremyhu-tinderbox' ]
 
-# xf86-video-xgi*: https://bugs.freedesktop.org/show_bug.cgi?id=35646
-skip = [ 'xf86-video-geode', 'xf86-video-xgi', 'xf86-video-xgixp' ]
-
 # xf86-video-geode: https://bugs.freedesktop.org/show_bug.cgi?id=35645
-#skip = [ 'xf86-video-geode' ]
+skip = [ 'xf86-video-geode' ]
 
 build_policy = 'all'
 
