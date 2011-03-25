@@ -4,6 +4,7 @@
 
 <moduleset>
   <include href="http://cgit.freedesktop.org/xorg/util/modular/blob/xorg.modules" />
+  <!-- <include href="/home/jeremy/src/freedesktop/src/modular/xorg.modules" /> -->
 
   <repository type="git" name="git.freedesktop.org" href="git://anongit.freedesktop.org/git/"/>
 
