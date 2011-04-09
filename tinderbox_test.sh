@@ -3,7 +3,7 @@
 # Visit http://tinderbox.x.org/account/ to add more machines.
 
 if [[ $# -eq 0 ]] ; then
-  CONFIG="$(hostname -s)"
+  CONFIG="$(hostname -s)${SCHROOT_SESSION_ID+"-${SCHROOT_SESSION_ID}"}"
 else
   CONFIG=$1
 fi
@@ -30,6 +30,8 @@ case $CONFIG in
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
     ;;
   tifa-linux64)
+    # libxcb does not like python3
+    export PYTHON="/usr/bin/python2"
     URL="http://jeremyhu-tifa-linux64:JsFKEr4f6@tinderbox.x.org/builds/rpc"
     ;;
   *)
@@ -44,6 +46,7 @@ JHBUILD="${JHBUILD} -f ${JHBUILDDIR}/${JHBUILDRC}"
 [[ -d /opt/local/bin ]] && PATH="/opt/local/bin:${PATH}"
 [[ -d /opt/llvm/bin ]] && PATH="/opt/llvm/bin:${PATH}"
 [[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
+PATH="${JHBUILDDIR}/build/bin:${JHBUILDDIR}/external/build/bin:${PATH}"
 
 export ACLOCAL="aclocal -I ${JHBUILDDIR}/build/share/aclocal"
 [[ -d /usr/local/share/aclocal ]] && ACLOCAL="${ACLOCAL} -I /usr/local/share/aclocal"
