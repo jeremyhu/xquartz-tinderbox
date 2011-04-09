@@ -17,6 +17,7 @@ case $CONFIG in
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
 
     export CC="/opt/llvm/bin/clang"
+    export OBJC="${CC}"
     export CXX="/opt/llvm/bin/clang++"
     export LIBTOOLIZE="glibtoolize"
 
@@ -27,11 +28,13 @@ case $CONFIG in
     ;;
   tifa|tifa-linux32)
     JHBUILD="linux32 ${JHBUILD}"
+    LD_LIBRARY_PATH="${JHBUILDDIR}/build/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
     ;;
   tifa-linux64)
     # libxcb does not like python3
     export PYTHON="/usr/bin/python2"
+    LD_LIBRARY_PATH="${JHBUILDDIR}/build/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux64:JsFKEr4f6@tinderbox.x.org/builds/rpc"
     ;;
   *)
@@ -58,6 +61,8 @@ export FOP_OPTS="-Xmx2048m -Djava.awt.headless=true"
 
 export CPPFLAGS="-I${JHBUILDDIR}/build/include -I${JHBUILDDIR}/external/build/include"
 export CFLAGS="-O0 -pipe -Wall -Wformat=2"
+export OBJCFLAGS="${CFLAGS}"
+export CXXFLAGS="${CFLAGS}"
 
 [[ -d "${JHBUILDDIR}/build/share/aclocal" ]] || mkdir -p "${JHBUILDDIR}/build/share/aclocal"
 

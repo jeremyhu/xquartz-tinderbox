@@ -1,4 +1,5 @@
-# Outside requirements: gperf bison flex libxml2-dev libexpat-dev libpng-dev libfreetype6-dev libgcrypt-dev intltool libglib2.0-dev
+# Nonstandard Ubuntu requirements: gperf bison flex libxml2-dev libexpat-dev libpng-dev libfreetype6-dev libgcrypt-dev intltool libglib2.0-dev
+# Nonstandard Gentoo requirements: libxslt
 
 moduleset = os.path.join(os.environ['JHBUILDDIR'], 'xorg.modules')
 
@@ -12,6 +13,6 @@ build_policy = 'all'
 checkoutroot = os.path.join(os.environ['JHBUILDDIR'] , 'src')
 prefix = os.path.join(os.environ['JHBUILDDIR'], 'build')
 
-autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking --disable-runtime-deps'
+autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking --disable-runtime-deps --disable-silent-rules --disable-gtk'
 
 makeargs = '-j1'
