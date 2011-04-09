@@ -12,21 +12,8 @@ export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild${SCHROOT_SESSION_ID+"-${SCHRO
 JHBUILDRC="jhbuildrc.linux"
 JHBUILD="jhbuild"
 
-[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:${PATH}"
-[[ -d /opt/local/bin ]] && PATH="/opt/local/bin:${PATH}"
-[[ -d /opt/llvm/bin ]] && PATH="/opt/llvm/bin:${PATH}"
-[[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
-
 case $CONFIG in
   yuffie)
-    . /etc/profile
-    . /etc/bashrc
-    . ${HOME}/.profile
-    . ${HOME}/.bashrc
-    . ${HOME}/src/strip.sh
-
-    unset CFLAGS OBJCFLAGS CPPFLAGS LDFLAGS C_INCLUDE_PATH OBJC_INCLUDE_PATH CPLUS_INCLUDE_PATH PKG_CONFIG_PATH
-
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
 
     export CC="/opt/llvm/bin/clang"
@@ -51,15 +38,25 @@ case $CONFIG in
     ;;
 esac
 
+JHBUILD="${JHBUILD} -f ${JHBUILDDIR}/${JHBUILDRC}"
+
+[[ -d /usr/local/bin ]] && PATH="/usr/local/bin:${PATH}"
+[[ -d /opt/local/bin ]] && PATH="/opt/local/bin:${PATH}"
+[[ -d /opt/llvm/bin ]] && PATH="/opt/llvm/bin:${PATH}"
+[[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
+
 export ACLOCAL="aclocal -I ${JHBUILDDIR}/build/share/aclocal"
-[[ -d "${JHBUILDDIR}/build/share/aclocal" ]] || mkdir -p "${JHBUILDDIR}/build/share/aclocal"
 [[ -d /usr/local/share/aclocal ]] && ACLOCAL="${ACLOCAL} -I /usr/local/share/aclocal"
+
 export PKG_CONFIG_PATH="${JHBUILDDIR}/build/share/pkgconfig:${JHBUILDDIR}/build/lib/pkgconfig:${JHBUILDDIR}/external/build/share/pkgconfig:${JHBUILDDIR}/external/build/lib/pkgconfig"
+[[ -d /usr/X11 ]] && PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/X11/share/pkgconfig:/usr/X11/lib/pkgconfig"
+
 export FOP_OPTS="-Xmx2048m -Djava.awt.headless=true"
+
 export CPPFLAGS="-I${JHBUILDDIR}/build/include -I${JHBUILDDIR}/external/build/include"
 export CFLAGS="-O0 -pipe -Wall -Wformat=2"
 
-JHBUILD="${JHBUILD} -f ${JHBUILDDIR}/${JHBUILDRC}"
+[[ -d "${JHBUILDDIR}/build/share/aclocal" ]] || mkdir -p "${JHBUILDDIR}/build/share/aclocal"
 
 #$JHBUILD clean
 #$JHBUILD build --autogen --clean
