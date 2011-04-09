@@ -32,6 +32,8 @@ case $CONFIG in
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
     ;;
   tifa-linux64)
+    TB_CFLAGS="-mminimal-toc"
+
     # libxcb does not like python3
     export PYTHON="/usr/bin/python2"
     LD_LIBRARY_PATH="${JHBUILDDIR}/build/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
@@ -60,7 +62,7 @@ export PKG_CONFIG_PATH="${JHBUILDDIR}/build/share/pkgconfig:${JHBUILDDIR}/build/
 export FOP_OPTS="-Xmx2048m -Djava.awt.headless=true"
 
 export CPPFLAGS="-I${JHBUILDDIR}/build/include -I${JHBUILDDIR}/external/build/include"
-export CFLAGS="-O0 -pipe -Wall -Wformat=2"
+export CFLAGS="-O0 -pipe -Wall -Wformat=2 ${TB_CFLAGS}"
 export OBJCFLAGS="${CFLAGS}"
 export CXXFLAGS="${CFLAGS}"
 
