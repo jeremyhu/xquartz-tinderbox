@@ -8,7 +8,7 @@ else
   CONFIG=$1
 fi
 
-export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild"
+export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild${SCHROOT_SESSION_ID+"-${SCHROOT_SESSION_ID}"}"
 JHBUILDRC="jhbuildrc.linux"
 JHBUILD="jhbuild"
 
