@@ -16,3 +16,5 @@ prefix = os.path.join(os.environ['JHBUILDDIR'], 'build')
 autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking --disable-runtime-deps --disable-silent-rules --disable-gtk'
 
 makeargs = '-j1'
+
+makecheck = 'true'
