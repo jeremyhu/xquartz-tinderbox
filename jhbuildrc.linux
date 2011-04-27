@@ -17,4 +17,4 @@ autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxyge
 
 makeargs = '-j1'
 
-makecheck = 'true'
+makecheck = True
