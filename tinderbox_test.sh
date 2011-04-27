@@ -7,6 +7,7 @@ if [[ $# -eq 0 ]] ; then
 else
   CONFIG=$1
 fi
+export CONFIG
 
 export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild${SCHROOT_SESSION_ID+"-${SCHROOT_SESSION_ID}"}"
 JHBUILDRC="jhbuildrc.linux"
@@ -27,6 +28,7 @@ case $CONFIG in
     URL="http://jeremyhu-vincent:xQUGcg@tinderbox.x.org/builds/rpc"
     ;;
   tifa|tifa-linux32)
+    CONFIG="tifa-linux32"
     JHBUILD="linux32 ${JHBUILD}"
     LD_LIBRARY_PATH="${JHBUILDDIR}/build/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
