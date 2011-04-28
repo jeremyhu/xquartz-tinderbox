@@ -18,3 +18,6 @@ autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxyge
 makeargs = '-j1'
 
 makecheck = True
+
+# libdrm
+makecheck_advisory = True
