@@ -74,17 +74,10 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="xserver-stable">
-    <dependencies>
-      <dep package="xserver-1.9"/>
-      <dep package="xserver-1.10"/>
-    </dependencies>
-  </metamodule>
-
   <metamodule id="xorg-jeremyhu-tinderbox">
     <dependencies>
       <dep package="xorg"/>
-      <dep package="xserver-stable"/>
+      <dep package="xserver-1.10"/>
     </dependencies>
   </metamodule>
 
