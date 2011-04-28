@@ -76,13 +76,13 @@ upload_analyzer() {
 }
 
 upload_analyzer_pipe() {
-    if [[ ! -r ${JHBUILDDIR}/fdo.dsa ]] ; then
+    if [[ ! -r ${JHBUILDDIR}/fdo.rsa ]] ; then
         cat
         return 0
     fi
 
     eval $(/usr/bin/ssh-agent -s)
-    /usr/bin/ssh-add "${JHBUILDDIR}/fdo.dsa"
+    /usr/bin/ssh-add "${JHBUILDDIR}/fdo.rsa"
 
     perl -n -e "if(m/scan-build: Run 'scan-view .*\/(analyzer\/.*)' to examine bug reports\./) { print \$1.\"\n\";}" |
     while read path ; do
