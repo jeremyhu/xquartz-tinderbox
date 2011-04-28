@@ -70,11 +70,36 @@ export CXXFLAGS="${CFLAGS}"
 
 [[ -d "${JHBUILDDIR}/build/share/aclocal" ]] || mkdir -p "${JHBUILDDIR}/build/share/aclocal"
 
+upload_analyzer() {
+    ssh jeremyhu@people.freedesktop.org mkdir -p w/${1} &&
+    rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${1}/ jeremyhu@people.freedesktop.org:w/${1}
+}
+
+upload_analyzer_pipe() {
+    if [[ ! -r ${JHBUILDDIR}/fdo.dsa ]] ; then
+        cat
+        return 0
+    fi
+
+    eval $(/usr/bin/ssh-agent -s)
+    /usr/bin/ssh-add "${JHBUILDDIR}/fdo.dsa"
+
+    perl -n -e "if(m/scan-build: Run 'scan-view .*\/(analyzer\/.*)' to examine bug reports\./) { print \$1.\"\n\";}" |
+    while read path ; do
+        upload_analyzer "${path}" < /dev/null
+    done
+
+    # Do one final rsync to sync old log removal
+    upload_analyzer analyzer/yuffie
+
+    kill ${SSH_AGENT_PID}
+}
+
 #$JHBUILD clean
 #$JHBUILD build --autogen --clean
 #$JHBUILD build --autogen --clean --start-at=xserver
 #$JHBUILD autobuild --autogen --verbose --report-url="${URL}"
-$JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}"
+$JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}" | upload_analyzer_pipe
 
 # Delete, so LS doesn't find it accidentally
 if [[ $CONFIG = "yuffie" ]] ; then
