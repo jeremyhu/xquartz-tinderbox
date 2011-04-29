@@ -75,22 +75,23 @@ upload_analyzer() {
     rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${1}/ jeremyhu@people.freedesktop.org:w/${1}
 }
 
-upload_analyzer_pipe() {
+upload_analyzer_results() {
     if [[ ! -r ${JHBUILDDIR}/fdo.rsa ]] ; then
-        cat
         return 0
     fi
+
+    rmdir ${JHBUILDDIR}/analyzer/${CONFIG}/* >& /dev/null
 
     eval $(/usr/bin/ssh-agent -s)
     /usr/bin/ssh-add "${JHBUILDDIR}/fdo.rsa"
 
-    perl -n -e "if(m/scan-build: Run 'scan-view .*\/(analyzer\/.*)' to examine bug reports\./) { print \$1.\"\n\";}" |
-    while read path ; do
-        upload_analyzer "${path}" < /dev/null
-    done
+    #perl -n -e "if(m/scan-build: Run 'scan-view .*\/(analyzer\/.*)' to examine bug reports\./) { print \$1.\"\n\";}" |
+    #while read path ; do
+    #    upload_analyzer "${path}" < /dev/null
+    #done
 
     # Do one final rsync to sync old log removal
-    upload_analyzer analyzer/yuffie
+    upload_analyzer analyzer/${CONFIG}
 
     kill ${SSH_AGENT_PID}
 }
@@ -99,9 +100,11 @@ upload_analyzer_pipe() {
 #$JHBUILD build --autogen --clean
 #$JHBUILD build --autogen --clean --start-at=xserver
 #$JHBUILD autobuild --autogen --verbose --report-url="${URL}"
-$JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}" | upload_analyzer_pipe
+$JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}"
+
+upload_analyzer_results
 
 # Delete, so LS doesn't find it accidentally
 if [[ $CONFIG = "yuffie" ]] ; then
-  rm -rf "${JHBUILD_DIR}/build/Applications"
+  rm -rf "${JHBUILDDIR}/build/Applications"
 fi
