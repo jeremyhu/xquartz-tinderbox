@@ -70,28 +70,28 @@ export CXXFLAGS="${CFLAGS}"
 
 [[ -d "${JHBUILDDIR}/build/share/aclocal" ]] || mkdir -p "${JHBUILDDIR}/build/share/aclocal"
 
-upload_analyzer() {
-    ssh jeremyhu@people.freedesktop.org mkdir -p w/${1} &&
-    rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${1}/ jeremyhu@people.freedesktop.org:w/${1}
-}
+export ANALYZERSUBDIR="analyzer/${CONFIG}/$(date +"%Y%m%d-%H%M")"
+[[ -r ${JHBUILDDIR}/fdo.rsa ]] && mkdir -p ${JHBUILDDIR}/${ANALYZERSUBDIR}
 
 upload_analyzer_results() {
     if [[ ! -r ${JHBUILDDIR}/fdo.rsa ]] ; then
         return 0
     fi
 
-    rmdir ${JHBUILDDIR}/analyzer/${CONFIG}/* >& /dev/null
+    # Remove empty directories
+    rmdir ${JHBUILDDIR}/${ANALYZERSUBDIR}/* >& /dev/null
+
+    # Remove analyzer's created subdirectories
+    for projdir in ${JHBUILDDIR}/${ANALYZERSUBDIR}/* ; do
+        mv ${projdir}/20*-*-*-*/* ${projdir}
+	rmdir ${projdir}/20*-*-*-*
+    done
 
     eval $(/usr/bin/ssh-agent -s)
     /usr/bin/ssh-add "${JHBUILDDIR}/fdo.rsa"
 
-    #perl -n -e "if(m/scan-build: Run 'scan-view .*\/(analyzer\/.*)' to examine bug reports\./) { print \$1.\"\n\";}" |
-    #while read path ; do
-    #    upload_analyzer "${path}" < /dev/null
-    #done
-
-    # Do one final rsync to sync old log removal
-    upload_analyzer analyzer/${CONFIG}
+    ssh jeremyhu@people.freedesktop.org mkdir -p w/${ANALYZERSUBDIR} &&
+    rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${ANALYZERSUBDIR}/ jeremyhu@people.freedesktop.org:w/${ANALYZERSUBDIR}
 
     kill ${SSH_AGENT_PID}
 }

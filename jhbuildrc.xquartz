@@ -18,4 +18,4 @@ makecheck = True
 
 scan_build = True
 scan_buildargs = '-v --use-cc=clang --use-c++=clang++'
-scan_build_outputdir = os.path.join(os.environ['JHBUILDDIR'] , 'analyzer', os.environ['CONFIG'])
+scan_build_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
