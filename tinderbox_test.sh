@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -ex
 # http://www.x.org/wiki/Tinderbox
 # Visit http://tinderbox.x.org/account/ to add more machines.
 
@@ -90,17 +90,17 @@ upload_analyzer_results() {
     eval $(/usr/bin/ssh-agent -s)
     /usr/bin/ssh-add "${JHBUILDDIR}/fdo.rsa"
 
-    ssh jeremyhu@people.freedesktop.org mkdir -p w/${ANALYZERSUBDIR} &&
+    ssh jeremyhu@people.freedesktop.org mkdir -p w/${ANALYZERSUBDIR}
     rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${ANALYZERSUBDIR}/ jeremyhu@people.freedesktop.org:w/${ANALYZERSUBDIR}
 
     kill ${SSH_AGENT_PID}
 }
 
 #$JHBUILD clean
-#$JHBUILD build --autogen --clean
+#$JHBUILD build --autogen --clean || true
 #$JHBUILD build --autogen --clean --start-at=xserver
 #$JHBUILD autobuild --autogen --verbose --report-url="${URL}"
-$JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}"
+$JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}" || true
 
 upload_analyzer_results
 

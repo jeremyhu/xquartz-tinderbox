@@ -16,6 +16,6 @@ autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxyge
 
 makecheck = True
 
-scan_build = True
-scan_buildargs = '-v --use-cc=clang --use-c++=clang++'
-scan_build_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
+static_analyzer = True
+static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
+static_analyzer_template = 'scan-build -v --use-cc=clang --use-c++=clang++ -o %(outputdir)s/%(module)s '
