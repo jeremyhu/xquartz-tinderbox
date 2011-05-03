@@ -79,7 +79,7 @@ upload_analyzer_results() {
     fi
 
     # Remove empty directories
-    rmdir ${JHBUILDDIR}/${ANALYZERSUBDIR}/* >& /dev/null
+    rmdir ${JHBUILDDIR}/${ANALYZERSUBDIR}/* >& /dev/null || true
 
     # Remove analyzer's created subdirectories
     for projdir in ${JHBUILDDIR}/${ANALYZERSUBDIR}/* ; do
@@ -97,7 +97,7 @@ upload_analyzer_results() {
 }
 
 #$JHBUILD clean
-#$JHBUILD build --autogen --clean || true
+#$JHBUILD build --autogen --clean
 #$JHBUILD build --autogen --clean --start-at=xserver
 #$JHBUILD autobuild --autogen --verbose --report-url="${URL}"
 $JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}" || true
