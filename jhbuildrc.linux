@@ -18,6 +18,10 @@ autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxyge
 makeargs = '-j1'
 
 makecheck = True
-
 # libdrm
 makecheck_advisory = True
+
+static_analyzer = True
+static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
+static_analyzer_template = 'scan-build -v --use-cc=gcc --use-c++=g++ -o %(outputdir)s/%(module)s '
+
