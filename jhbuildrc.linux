@@ -11,7 +11,7 @@ skip = [ 'xf86-video-geode' ]
 build_policy = 'all'
 
 checkoutroot = os.path.join(os.environ['JHBUILDDIR'] , 'src')
-prefix = os.path.join(os.environ['JHBUILDDIR'], 'build')
+prefix = '/var/tmp/jhbuild'
 
 autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --disable-static --disable-dependency-tracking --disable-runtime-deps --disable-silent-rules --disable-gtk'
 
@@ -22,6 +22,8 @@ makecheck = True
 makecheck_advisory = True
 
 static_analyzer = True
+# libxcb generated code has a bunch of warnings that take up 1G of log space
+module_static_analyzer = { 'libxcb' : False }
 static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
 static_analyzer_template = 'scan-build -v --use-cc=gcc --use-c++=g++ -o %(outputdir)s/%(module)s '
 

@@ -17,5 +17,7 @@ autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxyge
 makecheck = True
 
 static_analyzer = True
+# libxcb generated code has a bunch of warnings that take up 1G of log space
+module_static_analyzer = { 'libxcb' : False }
 static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
 static_analyzer_template = 'scan-build -v --use-cc=clang --use-c++=clang++ -o %(outputdir)s/%(module)s '
