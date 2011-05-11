@@ -22,7 +22,9 @@ case $CONFIG in
     export CXX="/opt/llvm/bin/clang++"
     export LIBTOOLIZE="glibtoolize"
 
-    TB_CFLAGS="-Wextra"
+#    TB_CFLAGS="-Wextra"
+
+# Stage 1:
     TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
     TB_CFLAGS="${TB_CFLAGS} -Werror=nonnull"
     TB_CFLAGS="${TB_CFLAGS} -Werror=format-security"
@@ -35,18 +37,20 @@ case $CONFIG in
     TB_CFLAGS="${TB_CFLAGS} -Werror=sequence-point"
     TB_CFLAGS="${TB_CFLAGS} -Werror=return-type"
     TB_CFLAGS="${TB_CFLAGS} -Werror=trigraphs"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=array-bounds -ftree-vrp"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=cast-align"
+    TB_CFLAGS="${TB_CFLAGS} -Werror=array-bounds"
+    TB_CFLAGS="${TB_CFLAGS} -Wcast-align"
     TB_CFLAGS="${TB_CFLAGS} -Werror=write-strings"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=clobbered"
+#    TB_CFLAGS="${TB_CFLAGS} -Werror=clobbered"
     TB_CFLAGS="${TB_CFLAGS} -Werror=address"
     TB_CFLAGS="${TB_CFLAGS} -Werror=int-to-pointer-cast"
     TB_CFLAGS="${TB_CFLAGS} -Werror=pointer-to-int-cast"
-    TB_CFLAGS="${TB_CFLAGS} -Wlogical-op"
+
+# Stage 2:
+#    TB_CFLAGS="${TB_CFLAGS} -Wlogical-op"
     TB_CFLAGS="${TB_CFLAGS} -Wunused"
     TB_CFLAGS="${TB_CFLAGS} -Wuninitialized"
     TB_CFLAGS="${TB_CFLAGS} -Wshadow"
-    TB_CFLAGS="${TB_CFLAGS} -Wunsafe-loop-optimizations"
+#    TB_CFLAGS="${TB_CFLAGS} -Wunsafe-loop-optimizations"
     TB_CFLAGS="${TB_CFLAGS} -Wcast-qual"
     TB_CFLAGS="${TB_CFLAGS} -Wmissing-noreturn"
     TB_CFLAGS="${TB_CFLAGS} -Wmissing-format-attribute"
@@ -82,7 +86,7 @@ case $CONFIG in
     ;;
 esac
 
-export PREFIX=${PREFIX-${JHBUILDDIR}}
+export PREFIX=${PREFIX-"${JHBUILDDIR}/build"}
 
 JHBUILD="${JHBUILD} -f ${JHBUILDDIR}/${JHBUILDRC}"
 
