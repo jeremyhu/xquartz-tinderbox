@@ -56,7 +56,6 @@ case $CONFIG in
     TB_CFLAGS="${TB_CFLAGS} -Wmissing-format-attribute"
     TB_CFLAGS="${TB_CFLAGS} -Wredundant-decls"
     TB_CFLAGS="${TB_CFLAGS} -Wnested-externs"
-    TB_CFLAGS="${TB_CFLAGS} -Wunreachable-code"
     TB_CFLAGS="${TB_CFLAGS} -Winline"
 
     JHBUILDRC="jhbuildrc.xquartz"
