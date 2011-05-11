@@ -62,16 +62,18 @@ case $CONFIG in
     ;;
   tifa|tifa-linux32)
     CONFIG="tifa-linux32"
+    PREFIX="/var/tmp/jhbuild"
     JHBUILD="linux32 ${JHBUILD}"
-    LD_LIBRARY_PATH="${JHBUILDDIR}/build/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
+    LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
     ;;
   tifa-linux64)
     TB_CFLAGS="-mminimal-toc"
+    PREFIX="/var/tmp/jhbuild"
 
     # libxcb does not like python3
     export PYTHON="/usr/bin/python2"
-    LD_LIBRARY_PATH="${JHBUILDDIR}/build/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
+    LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux64:JsFKEr4f6@tinderbox.x.org/builds/rpc"
     ;;
   *)
@@ -80,28 +82,30 @@ case $CONFIG in
     ;;
 esac
 
+export PREFIX=${PREFIX-${JHBUILDDIR}}
+
 JHBUILD="${JHBUILD} -f ${JHBUILDDIR}/${JHBUILDRC}"
 
 [[ -d /usr/local/bin ]] && PATH="/usr/local/bin:${PATH}"
 [[ -d /opt/local/bin ]] && PATH="/opt/local/bin:${PATH}"
 [[ -d /opt/llvm/bin ]] && PATH="/opt/llvm/bin:${PATH}"
 [[ -d "${HOME}/bin" ]] && PATH="${HOME}/bin:${PATH}"
-PATH="${JHBUILDDIR}/build/bin:${JHBUILDDIR}/external/build/bin:${PATH}"
+PATH="${PREFIX}/bin:${JHBUILDDIR}/external/build/bin:${PATH}"
 
-export ACLOCAL="aclocal -I ${JHBUILDDIR}/build/share/aclocal"
+export ACLOCAL="aclocal -I ${PREFIX}/share/aclocal"
 [[ -d /usr/local/share/aclocal ]] && ACLOCAL="${ACLOCAL} -I /usr/local/share/aclocal"
 
-export PKG_CONFIG_PATH="${JHBUILDDIR}/build/share/pkgconfig:${JHBUILDDIR}/build/lib/pkgconfig:${JHBUILDDIR}/external/build/share/pkgconfig:${JHBUILDDIR}/external/build/lib/pkgconfig"
+export PKG_CONFIG_PATH="${PREFIX}/share/pkgconfig:${PREFIX}/lib/pkgconfig:${JHBUILDDIR}/external/build/share/pkgconfig:${JHBUILDDIR}/external/build/lib/pkgconfig"
 [[ -d /usr/X11 ]] && PKG_CONFIG_PATH="${PKG_CONFIG_PATH}:/usr/X11/share/pkgconfig:/usr/X11/lib/pkgconfig"
 
 export FOP_OPTS="-Xmx2048m -Djava.awt.headless=true"
 
-export CPPFLAGS="-I${JHBUILDDIR}/build/include -I${JHBUILDDIR}/external/build/include"
+export CPPFLAGS="-I${PREFIX}/include -I${JHBUILDDIR}/external/build/include"
 export CFLAGS="-O0 -pipe -Wall -Wformat=2 ${TB_CFLAGS}"
 export OBJCFLAGS="${CFLAGS}"
 export CXXFLAGS="${CFLAGS}"
 
-[[ -d "${JHBUILDDIR}/build/share/aclocal" ]] || mkdir -p "${JHBUILDDIR}/build/share/aclocal"
+[[ -d "${PREFIX}/share/aclocal" ]] || mkdir -p "${PREFIX}/share/aclocal"
 
 export ANALYZERSUBDIR="analyzer/${CONFIG}/$(date +"%Y%m%d-%H%M")"
 [[ -r ${JHBUILDDIR}/fdo.rsa ]] && mkdir -p ${JHBUILDDIR}/${ANALYZERSUBDIR}
@@ -139,5 +143,5 @@ upload_analyzer_results
 
 # Delete, so LS doesn't find it accidentally
 if [[ $CONFIG = "yuffie" ]] ; then
-  rm -rf "${JHBUILDDIR}/build/Applications"
+  rm -rf "${PREFIX}/Applications"
 fi
