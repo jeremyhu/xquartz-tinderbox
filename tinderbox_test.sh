@@ -24,21 +24,23 @@ case $CONFIG in
 
 #    TB_CFLAGS="-Wextra"
 
+    TB_CFLAGS="-fdiagnostics-show-category=name"
+
 # Stage 1:
     TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
     TB_CFLAGS="${TB_CFLAGS} -Werror=nonnull"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=format-security"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=format-extra-args"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=format-y2k"
+    TB_CFLAGS="${TB_CFLAGS} -Wformat-security"         # <rdar://problem/9418512> clang is overzealous about -Werror=format-*
+    TB_CFLAGS="${TB_CFLAGS} -Wformat-extra-args"
+    TB_CFLAGS="${TB_CFLAGS} -Wformat-y2k"
     TB_CFLAGS="${TB_CFLAGS} -Werror=init-self"
     TB_CFLAGS="${TB_CFLAGS} -Werror=main"
     TB_CFLAGS="${TB_CFLAGS} -Werror=missing-braces"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=parentheses"
+    TB_CFLAGS="${TB_CFLAGS} -Wparentheses"             # libX11 XKBBind.c:169
     TB_CFLAGS="${TB_CFLAGS} -Werror=sequence-point"
     TB_CFLAGS="${TB_CFLAGS} -Werror=return-type"
     TB_CFLAGS="${TB_CFLAGS} -Werror=trigraphs"
     TB_CFLAGS="${TB_CFLAGS} -Werror=array-bounds"
-    TB_CFLAGS="${TB_CFLAGS} -Wcast-align"
+#    TB_CFLAGS="${TB_CFLAGS} -Wcast-align"             # Noisy
     TB_CFLAGS="${TB_CFLAGS} -Werror=write-strings"
 #    TB_CFLAGS="${TB_CFLAGS} -Werror=clobbered"
     TB_CFLAGS="${TB_CFLAGS} -Werror=address"
