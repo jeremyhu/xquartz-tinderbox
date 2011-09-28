@@ -16,7 +16,7 @@ autogenargs = '--without-xf86misc --without-fop --without-xmlto --without-doxyge
 
 makecheck = True
 
-static_analyzer = True
+static_analyzer = os.environ['STATIC_ANALYSIS']
 # libxcb generated code has a bunch of warnings that take up 1G of log space
 module_static_analyzer = { 'libxcb' : False }
 static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
