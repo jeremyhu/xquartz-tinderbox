@@ -13,6 +13,8 @@ export JHBUILDDIR="${HOME}/src/freedesktop/jhbuild${SCHROOT_SESSION_ID+"-${SCHRO
 JHBUILDRC="jhbuildrc.linux"
 JHBUILD="jhbuild"
 
+export STATIC_ANALYSIS=True
+
 case $CONFIG in
   yuffie)
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
@@ -78,6 +80,10 @@ case $CONFIG in
     export PYTHON="/usr/bin/python2"
     LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux64:JsFKEr4f6@tinderbox.x.org/builds/rpc"
+
+    # http://llvm.org/bugs/show_bug.cgi?id=11028
+    export STATIC_ANALYSIS=False
+
     ;;
   *)
     echo "Invalid config: ${CONFIG}" >&2
