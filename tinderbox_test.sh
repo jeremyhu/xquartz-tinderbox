@@ -19,9 +19,11 @@ case $CONFIG in
   yuffie)
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
 
-    export CC="/opt/llvm/bin/clang"
+    #export CC="/opt/llvm/bin/clang"
+    export CC="/opt/local/bin/clang-mp-3.0"
     export OBJC="${CC}"
-    export CXX="/opt/llvm/bin/clang++"
+    #export CXX="/opt/llvm/bin/clang++"
+    export CXX="/opt/local/bin/clang++-mp-3.0"
     export LIBTOOLIZE="glibtoolize"
 
     TB_CFLAGS="-fdiagnostics-show-category=name"
@@ -71,6 +73,9 @@ case $CONFIG in
     JHBUILD="linux32 ${JHBUILD}"
     LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
+
+    TB_CFLAGS=""
+    TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
     ;;
   tifa-linux64)
     TB_CFLAGS="-mminimal-toc"
@@ -84,6 +89,8 @@ case $CONFIG in
     # http://llvm.org/bugs/show_bug.cgi?id=11028
     export STATIC_ANALYSIS=False
 
+    TB_CFLAGS=""
+    TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
     ;;
   *)
     echo "Invalid config: ${CONFIG}" >&2

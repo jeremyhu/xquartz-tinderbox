@@ -15,9 +15,10 @@ prefix = os.environ['PREFIX']
 autogenargs = '--without-xf86misc --without-fontcache --without-fop --without-xmlto --without-doxygen --without-asciidoc --without-groff --disable-specs --disable-devel-docs --disable-docs --with-dtrace --disable-static --disable-dependency-tracking --disable-silent-rules --disable-gtk --with-launchagents-dir=' + os.path.join(prefix, 'Library', 'LaunchAgents') + ' --with-launchdaemons-dir=' + os.path.join(prefix, 'Library', 'LaunchDaemons') + ' --with-apple-applications-dir=' + os.path.join(prefix, 'Applications')
 
 makecheck = True
+makecheck_advisory = False
 
 static_analyzer = os.environ['STATIC_ANALYSIS'] != 'False'
 # libxcb generated code has a bunch of warnings that take up 1G of log space
 module_static_analyzer = { 'libxcb' : False }
 static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
-static_analyzer_template = 'scan-build -v --use-cc=clang --use-c++=clang++ -o %(outputdir)s/%(module)s '
+static_analyzer_template = 'scan-build -v --use-cc=clang-mp-3.0 --use-c++=clang++-mp-3.0 -o %(outputdir)s/%(module)s '
