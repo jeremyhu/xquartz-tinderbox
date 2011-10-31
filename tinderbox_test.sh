@@ -15,6 +15,40 @@ JHBUILD="jhbuild"
 
 export STATIC_ANALYSIS=True
 
+# Stage 1:
+TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
+TB_CFLAGS="${TB_CFLAGS} -Werror=nonnull"
+TB_CFLAGS="${TB_CFLAGS} -Wformat-security"         # <rdar://problem/9418512> clang is overzealous about -Werror=format-*
+TB_CFLAGS="${TB_CFLAGS} -Wformat-extra-args"
+TB_CFLAGS="${TB_CFLAGS} -Wformat-y2k"
+TB_CFLAGS="${TB_CFLAGS} -Werror=init-self"
+TB_CFLAGS="${TB_CFLAGS} -Werror=main"
+TB_CFLAGS="${TB_CFLAGS} -Werror=missing-braces"
+TB_CFLAGS="${TB_CFLAGS} -Wparentheses"             # libX11 XKBBind.c:169
+TB_CFLAGS="${TB_CFLAGS} -Werror=sequence-point"
+TB_CFLAGS="${TB_CFLAGS} -Werror=return-type"
+TB_CFLAGS="${TB_CFLAGS} -Werror=trigraphs"
+TB_CFLAGS="${TB_CFLAGS} -Werror=array-bounds"
+#TB_CFLAGS="${TB_CFLAGS} -Wcast-align"             # Noisy
+TB_CFLAGS="${TB_CFLAGS} -Werror=write-strings"
+#TB_CFLAGS="${TB_CFLAGS} -Werror=clobbered"
+TB_CFLAGS="${TB_CFLAGS} -Werror=address"
+TB_CFLAGS="${TB_CFLAGS} -Werror=int-to-pointer-cast"
+TB_CFLAGS="${TB_CFLAGS} -Werror=pointer-to-int-cast"
+
+# Stage 2:
+#TB_CFLAGS="${TB_CFLAGS} -Wlogical-op"
+TB_CFLAGS="${TB_CFLAGS} -Wunused"
+TB_CFLAGS="${TB_CFLAGS} -Wuninitialized"
+TB_CFLAGS="${TB_CFLAGS} -Wshadow"
+#TB_CFLAGS="${TB_CFLAGS} -Wunsafe-loop-optimizations"
+TB_CFLAGS="${TB_CFLAGS} -Wcast-qual"
+TB_CFLAGS="${TB_CFLAGS} -Wmissing-noreturn"
+TB_CFLAGS="${TB_CFLAGS} -Wmissing-format-attribute"
+TB_CFLAGS="${TB_CFLAGS} -Wredundant-decls"
+TB_CFLAGS="${TB_CFLAGS} -Wnested-externs"
+TB_CFLAGS="${TB_CFLAGS} -Winline"
+
 case $CONFIG in
   yuffie)
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
@@ -26,41 +60,7 @@ case $CONFIG in
     export CXX="/opt/local/bin/clang++-mp-3.0"
     export LIBTOOLIZE="glibtoolize"
 
-    TB_CFLAGS="-fdiagnostics-show-category=name"
-
-# Stage 1:
-    TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=nonnull"
-    TB_CFLAGS="${TB_CFLAGS} -Wformat-security"         # <rdar://problem/9418512> clang is overzealous about -Werror=format-*
-    TB_CFLAGS="${TB_CFLAGS} -Wformat-extra-args"
-    TB_CFLAGS="${TB_CFLAGS} -Wformat-y2k"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=init-self"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=main"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=missing-braces"
-    TB_CFLAGS="${TB_CFLAGS} -Wparentheses"             # libX11 XKBBind.c:169
-    TB_CFLAGS="${TB_CFLAGS} -Werror=sequence-point"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=return-type"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=trigraphs"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=array-bounds"
-#    TB_CFLAGS="${TB_CFLAGS} -Wcast-align"             # Noisy
-    TB_CFLAGS="${TB_CFLAGS} -Werror=write-strings"
-#    TB_CFLAGS="${TB_CFLAGS} -Werror=clobbered"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=address"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=int-to-pointer-cast"
-    TB_CFLAGS="${TB_CFLAGS} -Werror=pointer-to-int-cast"
-
-# Stage 2:
-#    TB_CFLAGS="${TB_CFLAGS} -Wlogical-op"
-    TB_CFLAGS="${TB_CFLAGS} -Wunused"
-    TB_CFLAGS="${TB_CFLAGS} -Wuninitialized"
-    TB_CFLAGS="${TB_CFLAGS} -Wshadow"
-#    TB_CFLAGS="${TB_CFLAGS} -Wunsafe-loop-optimizations"
-    TB_CFLAGS="${TB_CFLAGS} -Wcast-qual"
-    TB_CFLAGS="${TB_CFLAGS} -Wmissing-noreturn"
-    TB_CFLAGS="${TB_CFLAGS} -Wmissing-format-attribute"
-    TB_CFLAGS="${TB_CFLAGS} -Wredundant-decls"
-    TB_CFLAGS="${TB_CFLAGS} -Wnested-externs"
-    TB_CFLAGS="${TB_CFLAGS} -Winline"
+    TB_CFLAGS="${TB_CFLAGS} -fdiagnostics-show-category=name"
 
     JHBUILDRC="jhbuildrc.xquartz"
     ;;
@@ -73,12 +73,9 @@ case $CONFIG in
     JHBUILD="linux32 ${JHBUILD}"
     LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
-
-    TB_CFLAGS=""
-    TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
     ;;
   tifa-linux64)
-    TB_CFLAGS="-mminimal-toc"
+    TB_CFLAGS="${TB_CFLAGS} -mminimal-toc"
     PREFIX="/var/tmp/jhbuild"
 
     # libxcb does not like python3
@@ -88,9 +85,6 @@ case $CONFIG in
 
     # http://llvm.org/bugs/show_bug.cgi?id=11028
     export STATIC_ANALYSIS=False
-
-    TB_CFLAGS=""
-    TB_CFLAGS="${TB_CFLAGS} -Werror=implicit"
     ;;
   *)
     echo "Invalid config: ${CONFIG}" >&2
