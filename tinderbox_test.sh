@@ -73,6 +73,9 @@ case $CONFIG in
     JHBUILD="linux32 ${JHBUILD}"
     LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
+
+    # http://llvm.org/bugs/show_bug.cgi?id=11028
+    export STATIC_ANALYSIS=False
     ;;
   tifa-linux64)
     TB_CFLAGS="${TB_CFLAGS} -mminimal-toc"
@@ -127,6 +130,11 @@ upload_analyzer_results() {
 
     # Remove empty directories
     rmdir ${JHBUILDDIR}/${ANALYZERSUBDIR}/* >& /dev/null || true
+    rmdir ${JHBUILDDIR}/${ANALYZERSUBDIR} >& /dev/null || true
+
+    if [[ ! -d "${JHBUILDDIR}/${ANALYZERSUBDIR}" ]] ; then
+        return 0
+    fi
 
     # Remove analyzer's created subdirectories
     for projdir in ${JHBUILDDIR}/${ANALYZERSUBDIR}/* ; do
