@@ -6,6 +6,7 @@
   <include href="http://cgit.freedesktop.org/xorg/util/modular/blob/xorg.modules" />
   <!-- <include href="/home/jeremy/src/freedesktop/src/modular/xorg.modules" /> -->
 
+  <repository type="git" name="github.com" href="git://github.com/"/>
   <repository type="git" name="git.freedesktop.org" href="git://anongit.freedesktop.org/git/"/>
 
   <autotools id="xserver-1.11">
@@ -30,6 +31,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="quartz-wm">
+    <branch repo="github.com" module="jeremyhu/quartz-wm.git" checkoutdir="xorg/quartz-wm" />
+    <dependencies>
+      <dep package="libAppleWM"/>
+      <dep package="libXinerama"/>
+      <dep package="libXrandr"/>
+      <dep package="pixman"/>
+    </dependencies>
+  </autotools>
+
   <metamodule id="xorg-jeremyhu-tinderbox">
     <dependencies>
       <dep package="xorg"/>
@@ -39,7 +50,7 @@
 
   <metamodule id="xquartz">
     <dependencies>
-      <dep package="libAppleWM"/>
+      <dep package="quartz-wm"/>
       <dep package="xorg-jeremyhu-tinderbox"/>
     </dependencies>
   </metamodule>
