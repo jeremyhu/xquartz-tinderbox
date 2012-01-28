@@ -18,12 +18,13 @@ autogenargs = '--without-xf86misc --without-fontcache --without-fop --without-xm
 makeargs = '-j1'
 
 makecheck = True
-makecheck_advisory = False
-#makecheck_advisory = True
+#makecheck_advisory = False
+
+# libdrm fails make check
+makecheck_advisory = True
 
 static_analyzer = os.environ['STATIC_ANALYSIS'] != 'False'
 # libxcb generated code has a bunch of warnings that take up 1G of log space
 module_static_analyzer = { 'libxcb' : False }
 static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
 static_analyzer_template = 'scan-build -v --use-cc=gcc --use-c++=g++ -o %(outputdir)s/%(module)s '
-

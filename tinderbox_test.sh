@@ -47,10 +47,12 @@ case $CONFIG in
     LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux32:xFDSPr@tinderbox.x.org/builds/rpc"
 
-    TB_CFLAGS="${TB_CFLAGS} -D_XOPEN_SOURCE=700 -D_BSD_SOURCE -D_GNU_SOURCE"
+    # http://llvm.org/bugs/show_bug.cgi?id=11867 (and probably others)
+    #export CC="/opt/llvm/bin/clang"
+    #export OBJC="${CC}"
+    #export CXX="/opt/llvm/bin/clang++"
 
-    # http://llvm.org/bugs/show_bug.cgi?id=11028
-    export STATIC_ANALYSIS=False
+    TB_CFLAGS="${TB_CFLAGS} -D_XOPEN_SOURCE=700 -D_BSD_SOURCE -D_GNU_SOURCE"
     ;;
   tifa-linux64)
     TB_CFLAGS="${TB_CFLAGS} -mminimal-toc"
@@ -60,9 +62,6 @@ case $CONFIG in
     export PYTHON="/usr/bin/python2"
     LD_LIBRARY_PATH="${PREFIX}/lib:${JHBUILDDIR}/external/build/lib${LD_LIBRARY_PATH+:${LD_LIBRARY_PATH}}"
     URL="http://jeremyhu-tifa-linux64:JsFKEr4f6@tinderbox.x.org/builds/rpc"
-
-    # http://llvm.org/bugs/show_bug.cgi?id=11028
-    export STATIC_ANALYSIS=False
     ;;
   *)
     echo "Invalid config: ${CONFIG}" >&2
