@@ -18,10 +18,7 @@ autogenargs = '--without-xf86misc --without-fontcache --without-fop --without-xm
 makeargs = '-j1'
 
 makecheck = True
-#makecheck_advisory = False
-
-# libdrm fails make check
-makecheck_advisory = True
+makecheck_advisory = False
 
 static_analyzer = os.environ['STATIC_ANALYSIS'] != 'False'
 # libxcb generated code has a bunch of warnings that take up 1G of log space
