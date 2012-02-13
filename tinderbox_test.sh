@@ -121,6 +121,7 @@ upload_analyzer_results() {
 
     ssh jeremyhu@people.freedesktop.org mkdir -p w/${ANALYZERSUBDIR}
     rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${ANALYZERSUBDIR}/ jeremyhu@people.freedesktop.org:w/${ANALYZERSUBDIR}
+    ssh jeremyhu@people.freedesktop.org bin/remove_old.sh
 
     kill ${SSH_AGENT_PID}
 }
