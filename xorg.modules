@@ -31,6 +31,28 @@
     </dependencies>
   </autotools>
 
+  <autotools id="xserver-1.12">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.12" revision="server-1.12-branch" />
+    <dependencies>
+      <dep package="libGL"/>
+      <dep package="libXaw"/>
+      <dep package="libxkbui"/>
+      <dep package="libXfont"/>
+      <dep package="libxtrans"/>
+      <dep package="libXau"/>
+      <dep package="libxkbfile"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXxf86vm"/>
+      <dep package="libXinerama"/>
+      <dep package="libdrm"/>
+      <dep package="libdmx"/>
+      <dep package="libXtst"/>
+      <dep package="libXRes"/>
+      <dep package="pixman"/>
+      <dep package="libpciaccess"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="quartz-wm">
     <branch repo="github.com" module="jeremyhu/quartz-wm.git" checkoutdir="xorg/quartz-wm" />
     <dependencies>
@@ -45,6 +67,7 @@
     <dependencies>
       <dep package="xorg"/>
       <dep package="xserver-1.11"/>
+      <dep package="xserver-1.12"/>
     </dependencies>
   </metamodule>
 
