@@ -88,7 +88,7 @@ export PKG_CONFIG_PATH="${PREFIX}/share/pkgconfig:${PREFIX}/lib/pkgconfig:${JHBU
 export FOP_OPTS="-Xmx2048m -Djava.awt.headless=true"
 
 export CPPFLAGS="-I${PREFIX}/include -I${JHBUILDDIR}/external/build/include"
-export CFLAGS="-O0 -g3 -pipe -Wall -Wextra -Wno-sign-compare -Wno-unused-parameter -Wno-missing-field-initializers -Wformat=2 ${TB_CFLAGS}"
+export CFLAGS="-O0 -g3 -pipe ${TB_CFLAGS}"
 export OBJCFLAGS="${CFLAGS}"
 export CXXFLAGS="${CFLAGS}"
 
