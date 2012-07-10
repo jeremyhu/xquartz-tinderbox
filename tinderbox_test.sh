@@ -27,10 +27,10 @@ case $CONFIG in
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
 
     #export CC="/opt/llvm/bin/clang"
-    export CC="/opt/local/bin/clang-mp-3.0"
+    export CC="/opt/local/bin/clang-mp-3.1"
     export OBJC="${CC}"
     #export CXX="/opt/llvm/bin/clang++"
-    export CXX="/opt/local/bin/clang++-mp-3.0"
+    export CXX="/opt/local/bin/clang++-mp-3.1"
     export LIBTOOLIZE="glibtoolize"
 
     TB_CFLAGS="${TB_CFLAGS} -fdiagnostics-show-category=name"
