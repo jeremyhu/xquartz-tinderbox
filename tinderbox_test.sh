@@ -15,6 +15,12 @@ JHBUILD="jhbuild"
 
 export STATIC_ANALYSIS=True
 
+# Sanitize the environment
+unset PKG_CONFIG_PATH
+unset C_INCLUDE_PATH
+unset OBJC_INCLUDE_PATH
+unset CPLUS_INCLUDE_PATH
+
 # Stage 1:
 #TB_CFLAGS="${TB_CFLAGS} -Werror=clobbered"
 #TB_CFLAGS="${TB_CFLAGS} -Wlogical-op"

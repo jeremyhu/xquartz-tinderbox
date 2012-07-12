@@ -66,7 +66,6 @@
   <metamodule id="xorg-jeremyhu-tinderbox">
     <dependencies>
       <dep package="xorg"/>
-      <dep package="xserver-1.11"/>
       <dep package="xserver-1.12"/>
     </dependencies>
   </metamodule>
