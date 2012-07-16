@@ -6,7 +6,7 @@ moduleset = os.path.join(os.environ['JHBUILDDIR'], 'xorg.modules')
 modules = [ 'xorg-jeremyhu-tinderbox' ]
 
 # xf86-video-geode: https://bugs.freedesktop.org/show_bug.cgi?id=35645
-skip = [ 'xf86-video-geode', 'xf86-video-xgi', 'xf86-video-intel' ]
+skip = [ 'xf86-video-geode', 'xf86-video-xgi', 'xf86-video-intel', 'xf86-video-openchrome' ]
 
 build_policy = 'all'
 
@@ -17,7 +17,8 @@ autogenargs = '--without-xf86misc --without-fontcache --without-fop --without-xm
 
 makeargs = '-j1'
 
-makecheck = True
+makecheck = False
+
 makecheck_advisory = False
 #makecheck_advisory = True
 
