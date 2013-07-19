@@ -58,9 +58,9 @@
   <autotools id="xorg-1.15" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
     <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.15" revision="master" />
     <dependencies>
+      <dep package="xorg-protos"/>
       <dep package="libGL"/>
       <dep package="libXaw"/>
-      <dep package="libxkbui"/>
       <dep package="libXfont"/>
       <dep package="libxtrans"/>
       <dep package="libXau"/>
@@ -68,6 +68,7 @@
       <dep package="libXdmcp"/>
       <dep package="libXxf86vm"/>
       <dep package="libXinerama"/>
+      <dep package="libXv"/>
       <dep package="libdrm"/>
       <dep package="libdmx"/>
       <dep package="libXtst"/>
