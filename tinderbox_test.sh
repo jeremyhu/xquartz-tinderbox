@@ -39,7 +39,7 @@ case $CONFIG in
     export CXX="/opt/local/bin/clang++-mp-3.1"
     export LIBTOOLIZE="glibtoolize"
 
-    TB_CFLAGS="${TB_CFLAGS} -fdiagnostics-show-category=name"
+    TB_CFLAGS="${TB_CFLAGS} -fdiagnostics-show-category=name -DNO_COMPILER_H -DFAKEIT"
 
     JHBUILDRC="jhbuildrc.xquartz"
     ;;
@@ -126,7 +126,7 @@ upload_analyzer_results() {
     /usr/bin/ssh-add "${JHBUILDDIR}/fdo.rsa"
 
     ssh jeremyhu@people.freedesktop.org mkdir -p w/${ANALYZERSUBDIR}
-    rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${ANALYZERSUBDIR}/ jeremyhu@people.freedesktop.org:w/${ANALYZERSUBDIR}
+    rsync --archive --force --whole-file --delete --delete-after --verbose --compress ${JHBUILDDIR}/${ANALYZERSUBDIR}/ jeremyhu@people.freedesktop.org:w/${ANALYZERSUBDIR}/
     ssh jeremyhu@people.freedesktop.org bin/remove_old.sh
 
     kill ${SSH_AGENT_PID}

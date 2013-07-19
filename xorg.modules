@@ -9,12 +9,12 @@
   <repository type="git" name="github.com" href="git://github.com/"/>
   <repository type="git" name="git.freedesktop.org" href="git://anongit.freedesktop.org/git/"/>
 
-  <autotools id="xserver-1.11">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.11" revision="server-1.11-branch" />
+  <autotools id="xserver-1.14">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.14" revision="server-1.14-branch" />
     <dependencies>
+      <dep package="xorg-protos"/>
       <dep package="libGL"/>
       <dep package="libXaw"/>
-      <dep package="libxkbui"/>
       <dep package="libXfont"/>
       <dep package="libxtrans"/>
       <dep package="libXau"/>
@@ -22,6 +22,7 @@
       <dep package="libXdmcp"/>
       <dep package="libXxf86vm"/>
       <dep package="libXinerama"/>
+      <dep package="libXv"/>
       <dep package="libdrm"/>
       <dep package="libdmx"/>
       <dep package="libXtst"/>
@@ -31,8 +32,31 @@
     </dependencies>
   </autotools>
 
-  <autotools id="xserver-1.12">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.12" revision="server-1.12-branch" />
+  <autotools id="xorg-1.14" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.14" revision="server-1.14-branch" />
+    <dependencies>
+      <dep package="xorg-protos"/>
+      <dep package="libGL"/>
+      <dep package="libXaw"/>
+      <dep package="libXfont"/>
+      <dep package="libxtrans"/>
+      <dep package="libXau"/>
+      <dep package="libxkbfile"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXxf86vm"/>
+      <dep package="libXinerama"/>
+      <dep package="libXv"/>
+      <dep package="libdrm"/>
+      <dep package="libdmx"/>
+      <dep package="libXtst"/>
+      <dep package="libXRes"/>
+      <dep package="pixman"/>
+      <dep package="libpciaccess"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="xorg-1.15" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.15" revision="master" />
     <dependencies>
       <dep package="libGL"/>
       <dep package="libXaw"/>
@@ -63,17 +87,13 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="xorg-jeremyhu-tinderbox">
-    <dependencies>
-      <dep package="xorg"/>
-      <dep package="xserver-1.12"/>
-    </dependencies>
-  </metamodule>
-
   <metamodule id="xquartz">
     <dependencies>
+      <dep package="xorg"/>
       <dep package="quartz-wm"/>
-      <dep package="xorg-jeremyhu-tinderbox"/>
+      <dep package="xserver-1.14"/>
+      <dep package="xorg-1.14"/>
+      <dep package="xorg-1.15"/>
     </dependencies>
   </metamodule>
 
