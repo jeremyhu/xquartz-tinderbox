@@ -25,4 +25,4 @@ static_analyzer = os.environ['STATIC_ANALYSIS'] != 'False'
 # libxcb generated code has a bunch of warnings that take up 1G of log space
 module_static_analyzer = { 'libxcb' : False }
 static_analyzer_outputdir = os.path.join(os.environ['JHBUILDDIR'] , os.environ['ANALYZERSUBDIR'])
-static_analyzer_template = '/opt/local/libexec/llvm-3.1/bin/scan-build -v --use-cc=clang-mp-3.1 --use-c++=clang++-mp-3.1 -o %(outputdir)s/%(module)s '
+static_analyzer_template = '/opt/local/libexec/llvm-3.3/bin/scan-build -v --use-cc=clang-mp-3.3 --use-c++=clang++-mp-3.3 -o %(outputdir)s/%(module)s '
