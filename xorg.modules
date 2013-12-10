@@ -12,70 +12,155 @@
   <autotools id="xserver-1.14">
     <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.14" revision="server-1.14-branch" />
     <dependencies>
-      <dep package="xorg-protos"/>
-      <dep package="libGL"/>
-      <dep package="libXaw"/>
+      <dep package="util-macros"/>
+      <dep package="bigreqsproto"/>
+      <dep package="damageproto"/>
+      <dep package="fixesproto"/>
+      <dep package="fontsproto"/>
+      <dep package="inputproto"/>
+      <dep package="kbproto"/>
+      <dep package="randrproto"/>
+      <dep package="renderproto"/>
+      <dep package="x11proto"/>
+      <dep package="xcmiscproto"/>
+      <dep package="xextproto"/>
       <dep package="libXfont"/>
       <dep package="libxtrans"/>
       <dep package="libXau"/>
       <dep package="libxkbfile"/>
-      <dep package="libXdmcp"/>
-      <dep package="libXxf86vm"/>
-      <dep package="libXinerama"/>
-      <dep package="libXv"/>
-      <dep package="libdrm"/>
-      <dep package="libdmx"/>
-      <dep package="libXtst"/>
-      <dep package="libXRes"/>
-      <dep package="pixman"/>
-      <dep package="libpciaccess"/>
+      <dep package="libpixman"/>
+      <dep package="app-xkbcomp"/>
     </dependencies>
+    <suggests>
+      <dep package="compositeproto"/>
+      <dep package="dmxproto"/>
+      <dep package="dri2proto"/>
+      <dep package="dri3proto"/>
+      <dep package="glproto"/>
+      <dep package="presentproto"/>
+      <dep package="recordproto"/>
+      <dep package="resourceproto"/>
+      <dep package="scrnsaverproto"/>
+      <dep package="videoproto"/>
+      <dep package="xf86bigfontproto"/>
+      <dep package="xf86dgaproto"/>
+      <dep package="xf86driproto"/>
+      <dep package="xf86vidmodeproto"/>
+      <dep package="xineramaproto"/>
+      <dep package="libXaw"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXmu"/>
+      <dep package="libXRes"/>
+      <dep package="libXtst"/>
+      <dep package="libXv"/>
+      <dep package="libdmx"/>
+      <dep package="libpciaccess"/>
+      <dep package="mesa-drm"/>
+      <dep package="mesa-mesa"/>
+    </suggests>
   </autotools>
 
   <autotools id="xorg-1.14" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
     <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.14" revision="server-1.14-branch" />
     <dependencies>
-      <dep package="xorg-protos"/>
-      <dep package="libGL"/>
-      <dep package="libXaw"/>
+      <dep package="util-macros"/>
+      <dep package="bigreqsproto"/>
+      <dep package="damageproto"/>
+      <dep package="fixesproto"/>
+      <dep package="fontsproto"/>
+      <dep package="inputproto"/>
+      <dep package="kbproto"/>
+      <dep package="randrproto"/>
+      <dep package="renderproto"/>
+      <dep package="x11proto"/>
+      <dep package="xcmiscproto"/>
+      <dep package="xextproto"/>
       <dep package="libXfont"/>
       <dep package="libxtrans"/>
       <dep package="libXau"/>
       <dep package="libxkbfile"/>
-      <dep package="libXdmcp"/>
-      <dep package="libXxf86vm"/>
-      <dep package="libXinerama"/>
-      <dep package="libXv"/>
-      <dep package="libdrm"/>
-      <dep package="libdmx"/>
-      <dep package="libXtst"/>
-      <dep package="libXRes"/>
-      <dep package="pixman"/>
-      <dep package="libpciaccess"/>
+      <dep package="libpixman"/>
+      <dep package="app-xkbcomp"/>
     </dependencies>
+    <suggests>
+      <dep package="compositeproto"/>
+      <dep package="dmxproto"/>
+      <dep package="dri2proto"/>
+      <dep package="dri3proto"/>
+      <dep package="glproto"/>
+      <dep package="presentproto"/>
+      <dep package="recordproto"/>
+      <dep package="resourceproto"/>
+      <dep package="scrnsaverproto"/>
+      <dep package="videoproto"/>
+      <dep package="xf86bigfontproto"/>
+      <dep package="xf86dgaproto"/>
+      <dep package="xf86driproto"/>
+      <dep package="xf86vidmodeproto"/>
+      <dep package="xineramaproto"/>
+      <dep package="libXaw"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXmu"/>
+      <dep package="libXRes"/>
+      <dep package="libXtst"/>
+      <dep package="libXv"/>
+      <dep package="libdmx"/>
+      <dep package="libpciaccess"/>
+      <dep package="mesa-drm"/>
+      <dep package="mesa-mesa"/>
+    </suggests>
   </autotools>
 
   <autotools id="xorg-1.15" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
     <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.15" revision="master" />
     <dependencies>
-      <dep package="xorg-protos"/>
-      <dep package="libGL"/>
-      <dep package="libXaw"/>
+      <dep package="util-macros"/>
+      <dep package="bigreqsproto"/>
+      <dep package="damageproto"/>
+      <dep package="fixesproto"/>
+      <dep package="fontsproto"/>
+      <dep package="inputproto"/>
+      <dep package="kbproto"/>
+      <dep package="randrproto"/>
+      <dep package="renderproto"/>
+      <dep package="x11proto"/>
+      <dep package="xcmiscproto"/>
+      <dep package="xextproto"/>
       <dep package="libXfont"/>
       <dep package="libxtrans"/>
       <dep package="libXau"/>
       <dep package="libxkbfile"/>
-      <dep package="libXdmcp"/>
-      <dep package="libXxf86vm"/>
-      <dep package="libXinerama"/>
-      <dep package="libXv"/>
-      <dep package="libdrm"/>
-      <dep package="libdmx"/>
-      <dep package="libXtst"/>
-      <dep package="libXRes"/>
-      <dep package="pixman"/>
-      <dep package="libpciaccess"/>
+      <dep package="libpixman"/>
+      <dep package="app-xkbcomp"/>
+      <dep package="libxshmfence"/>                          <!-- Linux only -->
     </dependencies>
+    <suggests>
+      <dep package="compositeproto"/>
+      <dep package="dmxproto"/>
+      <dep package="dri2proto"/>
+      <dep package="dri3proto"/>
+      <dep package="glproto"/>
+      <dep package="presentproto"/>
+      <dep package="recordproto"/>
+      <dep package="resourceproto"/>
+      <dep package="scrnsaverproto"/>
+      <dep package="videoproto"/>
+      <dep package="xf86bigfontproto"/>
+      <dep package="xf86dgaproto"/>
+      <dep package="xf86driproto"/>
+      <dep package="xf86vidmodeproto"/>
+      <dep package="xineramaproto"/>
+      <dep package="libXaw"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXmu"/>
+      <dep package="libXRes"/>
+      <dep package="libXtst"/>
+      <dep package="libXv"/>
+      <dep package="libdmx"/>
+      <dep package="libpciaccess"/>
+      <dep package="mesa-drm"/>
+      <dep package="mesa-mesa"/>
+    </suggests>
   </autotools>
 
   <autotools id="quartz-wm">
@@ -84,13 +169,13 @@
       <dep package="libAppleWM"/>
       <dep package="libXinerama"/>
       <dep package="libXrandr"/>
-      <dep package="pixman"/>
+      <dep package="libpixman"/>
     </dependencies>
   </autotools>
 
   <metamodule id="xquartz">
     <dependencies>
-      <dep package="xorg"/>
+      <dep package="The X Window System"/>
       <dep package="quartz-wm"/>
       <dep package="xserver-1.14"/>
       <dep package="xorg-1.14"/>
