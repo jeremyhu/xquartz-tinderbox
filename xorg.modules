@@ -9,6 +9,19 @@
   <repository type="git" name="github.com" href="git://github.com/"/>
   <repository type="git" name="git.freedesktop.org" href="git://anongit.freedesktop.org/git/"/>
 
+  <metamodule id="The X Input Drivers">
+    <dependencies>
+      <dep package="xf86-input-void"/>
+    </dependencies>
+  </metamodule>
+
+  <metamodule id="The X Video Drivers">
+    <dependencies>
+      <dep package="xf86-video-dummy"/>
+      <dep package="xf86-video-nested"/>
+    </dependencies>
+  </metamodule>
+
   <autotools id="xserver-1.14">
     <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.14" revision="server-1.14-branch" />
     <dependencies>
