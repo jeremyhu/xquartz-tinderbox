@@ -9,14 +9,9 @@
   <repository type="git" name="github.com" href="git://github.com/"/>
   <repository type="git" name="git.freedesktop.org" href="git://anongit.freedesktop.org/git/"/>
 
-  <metamodule id="The X Input Drivers">
+  <metamodule id="The X11 Virtual Drivers">
     <dependencies>
       <dep package="xf86-input-void"/>
-    </dependencies>
-  </metamodule>
-
-  <metamodule id="The X Video Drivers">
-    <dependencies>
       <dep package="xf86-video-dummy"/>
       <dep package="xf86-video-nested"/>
     </dependencies>
@@ -124,8 +119,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="xorg-1.15" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.15" revision="master" />
+  <autotools id="xorg-1.16" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.16" revision="master" />
     <dependencies>
       <dep package="util-macros"/>
       <dep package="bigreqsproto"/>
@@ -186,13 +181,14 @@
     </dependencies>
   </autotools>
 
-  <metamodule id="xquartz">
+  <metamodule id="XQuartz and Xorg/Darwin Tinderbox">
     <dependencies>
       <dep package="The X Window System"/>
       <dep package="quartz-wm"/>
       <dep package="xserver-1.14"/>
       <dep package="xorg-1.14"/>
-      <dep package="xorg-1.15"/>
+      <dep package="xorg-1.16"/>
+      <dep package="The X11 Virtual Drivers"/>
     </dependencies>
   </metamodule>
 

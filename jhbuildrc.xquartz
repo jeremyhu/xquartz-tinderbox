@@ -3,9 +3,10 @@
 #moduleset = 'http://cgit.freedesktop.org/xorg/util/modular/blob/xorg.modules'
 moduleset = os.path.join(os.environ['HOME'], 'src', 'freedesktop', 'jhbuild', 'xorg.modules')
 
-modules = [ 'xquartz' ]
+modules = [ 'XQuartz and Xorg/Darwin Tinderbox' ]
 
-skip = [ 'libevdev', 'mesa-drm', 'app-xdriinfo', 'libpciaccess' ]
+# TODO: app-xclock is skipped due to a mismatch between headers and lib (MacPorts headers vs host lib)
+skip = [ 'libevdev', 'mesa-drm', 'app-xdriinfo', 'libpciaccess', 'The X Video Drivers', 'The X Input Drivers', 'app-xclock' ]
 
 build_policy = 'all'
 

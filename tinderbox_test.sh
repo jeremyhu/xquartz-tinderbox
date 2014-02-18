@@ -134,7 +134,7 @@ upload_analyzer_results() {
 
 #$JHBUILD clean
 #$JHBUILD build --autogen --clean
-#$JHBUILD build --autogen --clean --start-at=xserver
+#$JHBUILD build --autogen --clean --start-at=app-xclock
 #$JHBUILD autobuild --autogen --verbose --report-url="${URL}"
 $JHBUILD autobuild --autogen --clean --verbose --report-url="${URL}" || true
 
