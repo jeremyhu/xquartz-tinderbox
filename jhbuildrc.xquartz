@@ -6,7 +6,7 @@ moduleset = os.path.join(os.environ['HOME'], 'src', 'freedesktop', 'jhbuild', 'x
 modules = [ 'XQuartz and Xorg/Darwin Tinderbox' ]
 
 # TODO: app-xclock is skipped due to a mismatch between headers and lib (MacPorts headers vs host lib)
-skip = [ 'libevdev', 'mesa-drm', 'app-xdriinfo', 'libpciaccess', 'The X Video Drivers', 'The X Input Drivers', 'app-xclock' ]
+skip = [ 'libevdev', 'app-xdriinfo', 'libpciaccess', 'The X Video Drivers', 'The X Input Drivers', 'app-xclock' ]
 
 build_policy = 'all'
 
