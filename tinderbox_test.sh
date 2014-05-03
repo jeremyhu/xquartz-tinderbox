@@ -33,10 +33,10 @@ case $CONFIG in
     URL="http://jeremyhu-yuffie:xQUGcg@tinderbox.x.org/builds/rpc"
 
     #export CC="/opt/llvm/bin/clang"
-    export CC="/opt/local/bin/clang-mp-3.3"
+    export CC="/opt/local/bin/clang-mp-3.4"
     export OBJC="${CC}"
     #export CXX="/opt/llvm/bin/clang++"
-    export CXX="/opt/local/bin/clang++-mp-3.3"
+    export CXX="/opt/local/bin/clang++-mp-3.4"
     export LIBTOOLIZE="glibtoolize"
 
     TB_CFLAGS="${TB_CFLAGS} -fdiagnostics-show-category=name -DNO_COMPILER_H -DFAKEIT"
