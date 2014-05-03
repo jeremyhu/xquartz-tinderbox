@@ -9,6 +9,27 @@
   <repository type="git" name="github.com" href="git://github.com/"/>
   <repository type="git" name="git.freedesktop.org" href="git://anongit.freedesktop.org/git/"/>
 
+  <autotools id="mesa-mesa" autogenargs="--enable-xa --disable-dri --enable-xlib-glx">
+    <branch module="evelikov/Mesa" repo="github.com"
+            checkoutdir="mesa/mesa"/>
+    <dependencies>
+      <dep package="dri2proto"/>
+      <dep package="glproto"/>
+      <dep package="xextproto"/>
+      <dep package="xf86driproto"/>
+      <dep package="libXdamage"/>
+      <dep package="libX11"/>
+      <dep package="libXext"/>
+      <dep package="libXfixes"/>
+      <dep package="libxcb"/>
+      <dep package="mesa-drm"/>
+    </dependencies>
+    <suggests>
+      <dep package="libXvMC"/>
+      <dep package="libXxf86vm"/>
+    </suggests>
+  </autotools>
+
   <metamodule id="The X11 Virtual Drivers">
     <dependencies>
       <dep package="xf86-input-void"/>
@@ -17,8 +38,8 @@
     </dependencies>
   </metamodule>
 
-  <autotools id="xserver-1.14">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.14" revision="server-1.14-branch" />
+  <autotools id="xserver-1.15">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.15" revision="server-1.15-branch" />
     <dependencies>
       <dep package="util-macros"/>
       <dep package="bigreqsproto"/>
@@ -68,8 +89,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="xorg-1.14" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.14" revision="server-1.14-branch" />
+  <autotools id="xorg-1.15" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.15" revision="server-1.15-branch" />
     <dependencies>
       <dep package="util-macros"/>
       <dep package="bigreqsproto"/>
@@ -185,8 +206,8 @@
     <dependencies>
       <dep package="The X Window System"/>
       <dep package="quartz-wm"/>
-      <dep package="xserver-1.14"/>
-      <dep package="xorg-1.14"/>
+      <dep package="xserver-1.15"/>
+      <dep package="xorg-1.15"/>
       <dep package="xorg-1.16"/>
       <dep package="The X11 Virtual Drivers"/>
     </dependencies>
