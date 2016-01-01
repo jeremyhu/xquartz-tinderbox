@@ -38,8 +38,8 @@
     </dependencies>
   </metamodule>
 
-  <autotools id="xserver-1.15">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.15" revision="server-1.15-branch" />
+  <autotools id="xserver-1.17">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.17" revision="server-1.17-branch" />
     <dependencies>
       <dep package="util-macros"/>
       <dep package="bigreqsproto"/>
@@ -89,8 +89,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="xorg-1.15" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.15" revision="server-1.15-branch" />
+  <autotools id="xorg-1.17" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.17" revision="server-1.17-branch" />
     <dependencies>
       <dep package="util-macros"/>
       <dep package="bigreqsproto"/>
@@ -140,8 +140,110 @@
     </suggests>
   </autotools>
 
-  <autotools id="xorg-1.16" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
-    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.16" revision="master" />
+  <autotools id="xserver-1.18">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-1.18" revision="server-1.18-branch" />
+    <dependencies>
+      <dep package="util-macros"/>
+      <dep package="bigreqsproto"/>
+      <dep package="damageproto"/>
+      <dep package="fixesproto"/>
+      <dep package="fontsproto"/>
+      <dep package="inputproto"/>
+      <dep package="kbproto"/>
+      <dep package="randrproto"/>
+      <dep package="renderproto"/>
+      <dep package="x11proto"/>
+      <dep package="xcmiscproto"/>
+      <dep package="xextproto"/>
+      <dep package="libXfont"/>
+      <dep package="libxtrans"/>
+      <dep package="libXau"/>
+      <dep package="libxkbfile"/>
+      <dep package="libpixman"/>
+      <dep package="app-xkbcomp"/>
+    </dependencies>
+    <suggests>
+      <dep package="compositeproto"/>
+      <dep package="dmxproto"/>
+      <dep package="dri2proto"/>
+      <dep package="dri3proto"/>
+      <dep package="glproto"/>
+      <dep package="presentproto"/>
+      <dep package="recordproto"/>
+      <dep package="resourceproto"/>
+      <dep package="scrnsaverproto"/>
+      <dep package="videoproto"/>
+      <dep package="xf86bigfontproto"/>
+      <dep package="xf86dgaproto"/>
+      <dep package="xf86driproto"/>
+      <dep package="xf86vidmodeproto"/>
+      <dep package="xineramaproto"/>
+      <dep package="libXaw"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXmu"/>
+      <dep package="libXRes"/>
+      <dep package="libXtst"/>
+      <dep package="libXv"/>
+      <dep package="libdmx"/>
+      <dep package="libpciaccess"/>
+      <dep package="mesa-drm"/>
+      <dep package="mesa-mesa"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="xorg-1.18" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.18" revision="server-1.18-branch" />
+    <dependencies>
+      <dep package="util-macros"/>
+      <dep package="bigreqsproto"/>
+      <dep package="damageproto"/>
+      <dep package="fixesproto"/>
+      <dep package="fontsproto"/>
+      <dep package="inputproto"/>
+      <dep package="kbproto"/>
+      <dep package="randrproto"/>
+      <dep package="renderproto"/>
+      <dep package="x11proto"/>
+      <dep package="xcmiscproto"/>
+      <dep package="xextproto"/>
+      <dep package="libXfont"/>
+      <dep package="libxtrans"/>
+      <dep package="libXau"/>
+      <dep package="libxkbfile"/>
+      <dep package="libpixman"/>
+      <dep package="app-xkbcomp"/>
+    </dependencies>
+    <suggests>
+      <dep package="compositeproto"/>
+      <dep package="dmxproto"/>
+      <dep package="dri2proto"/>
+      <dep package="dri3proto"/>
+      <dep package="glproto"/>
+      <dep package="presentproto"/>
+      <dep package="recordproto"/>
+      <dep package="resourceproto"/>
+      <dep package="scrnsaverproto"/>
+      <dep package="videoproto"/>
+      <dep package="xf86bigfontproto"/>
+      <dep package="xf86dgaproto"/>
+      <dep package="xf86driproto"/>
+      <dep package="xf86vidmodeproto"/>
+      <dep package="xineramaproto"/>
+      <dep package="libXaw"/>
+      <dep package="libXdmcp"/>
+      <dep package="libXmu"/>
+      <dep package="libXRes"/>
+      <dep package="libXtst"/>
+      <dep package="libXv"/>
+      <dep package="libdmx"/>
+      <dep package="libpciaccess"/>
+      <dep package="mesa-drm"/>
+      <dep package="mesa-mesa"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="xorg-1.19" autogenargs="--enable-xorg --disable-xquartz --enable-kdrive --enable-xnest --enable-xvfb">
+    <branch repo="git.freedesktop.org" module="xorg/xserver" checkoutdir="xorg/xserver-xorg-1.19" revision="master" />
     <dependencies>
       <dep package="util-macros"/>
       <dep package="bigreqsproto"/>
@@ -206,9 +308,11 @@
     <dependencies>
       <dep package="The X Window System"/>
       <dep package="quartz-wm"/>
-      <dep package="xserver-1.15"/>
-      <dep package="xorg-1.15"/>
-      <dep package="xorg-1.16"/>
+      <dep package="xserver-1.17"/>
+      <dep package="xorg-1.17"/>
+      <dep package="xserver-1.18"/>
+      <dep package="xorg-1.18"/>
+      <dep package="xorg-1.19"/>
       <dep package="The X11 Virtual Drivers"/>
     </dependencies>
   </metamodule>
